@@ -452,7 +452,7 @@ theme_override_constants/h_separation = 50
 theme_override_constants/v_separation = 100
 
 [node name="PLAY" type="Button" parent="CanvasLayer/GridContainer"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("2_bbw8p")
@@ -483,7 +483,7 @@ text = "РАЗРАБОТЧИКИ:
 
 СЕЙТКАЛИ АЛИК
 
-БЕЗНОСОВ НИКИТА"
+КАЛАШНИКОВ НИКИТА"
 label_settings = SubResource("LabelSettings_s7bui")
 
 [node name="yebaka" type="Node3D" parent="."]
@@ -776,14 +776,16 @@ size = 0.53126967
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13081911, 0.7758868, 0.2863741)
+light_intensity_lumens = 73.8
+light_temperature = 1000.0
 light_color = Color(1, 0.33551362, 0.2695955, 1)
-light_energy = 0.06
+light_energy = 17.115
 omni_range = 0.55700964
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16182323, 0.7, 0.6)
 stream = ExtResource("4_bbw8p")
 unit_size = 35.62
-pitch_scale = 1.12
 
 [connection signal="pressed" from="CanvasLayer/GridContainer/PLAY" to="." method="play_button"]
 [connection signal="pressed" from="CanvasLayer/GridContainer/SETTINGS" to="." method="settings_button"]
