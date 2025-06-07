@@ -1,7 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://tlk1tt11cmap"]
+[gd_scene load_steps=23 format=4 uid="uid://tlk1tt11cmap"]
 
+[ext_resource type="Script" uid="uid://jp6b3ctf2xm" path="res://Game/Scenes/Level/experimental.gd" id="1_2bvm8"]
 [ext_resource type="PackedScene" uid="uid://cbfc7j5er51jg" path="res://Game/Player/CharacterController.tscn" id="1_u3xqp"]
 [ext_resource type="Texture2D" uid="uid://haxxpnimxkad" path="res://Game/Monster/Expermental/yebaka_i (2).webp" id="2_mjwxv"]
+[ext_resource type="AudioStream" uid="uid://dupf0ij118t6a" path="res://Game/Audio/Magnetude, Burr Oak — I Want You (Original Mix) [4DJsonline.com] (www.lightaudio.ru).mp3" id="3_kap1g"]
+[ext_resource type="AudioStream" uid="uid://daojt5gx2jiqh" path="res://Game/UI/Menu/menu_music.mp3" id="5_y00h0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u3xqp"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -463,6 +466,7 @@ _data = {
 }
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_2bvm8")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kap1g")
@@ -588,6 +592,12 @@ size = Vector3(1, 5, 15)
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, 0)
 light_energy = 2.075
 spot_range = 6.189
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, -7.8)
+light_energy = 2.075
+spot_range = 6.9442587
+spot_angle = 50.564026
 
 [node name="yebaka" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -19)
@@ -864,7 +874,7 @@ bones/37/rotation = Quaternion(-0.70710677, 0, 0, 0.70710677)
 bones/37/scale = Vector3(1, 1, 1)
 
 [node name="Sphere_002" type="MeshInstance3D" parent="yebaka/Armature/Skeleton3D"]
-transform = Transform3D(6.385, 0, 0, 0, 6.385, 0, 0, 0, 6.385, 0, -2.4833307, -2.1819897)
+transform = Transform3D(12.03, 0, 0, 0, 12.03, 0, 0, 0, 12.03, 0, -5.519523, -3.1819897)
 mesh = SubResource("ArrayMesh_htuwa")
 skin = SubResource("Skin_isadh")
 
@@ -872,3 +882,14 @@ skin = SubResource("Skin_isadh")
 libraries = {
 &"": SubResource("AnimationLibrary_p3icw")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.972382, 1.7942218, -19.605038)
+stream = ExtResource("3_kap1g")
+volume_db = 9.84
+max_distance = 21.2
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6346693, 1.7942218, -31.637989)
+stream = ExtResource("5_y00h0")
+max_distance = 5.0

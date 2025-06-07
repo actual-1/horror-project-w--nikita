@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
+
 @onready var yaw: CameraController = $YAW
 @onready var head: Camera3D = $YAW/PITCH/Head
 @onready var head_anim: AnimationPlayer = $AnimationPlayer
@@ -15,6 +17,8 @@ var current_speed : float = 0.0
 const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
+	audio.stream = preload("res://Game/Audio/eventAttention.mp3")
+	audio.playing = true
 	if !head_anim.is_playing():
 		head_anim.play("headbob")
 
@@ -59,8 +63,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerpf(velocity.x, move_toward(velocity.x, 0, current_speed), 0.1)
 			velocity.z = lerpf(velocity.z, move_toward(velocity.z, 0, current_speed), 0.1)
 	else:
-		velocity.x = lerpf(velocity.x, direction.x * current_speed, 0.1)
-		velocity.z = lerpf(velocity.z, direction.z * current_speed, 0.1)
+		velocity.x = lerpf(velocity.x, direction.x * current_speed, 0.05)
+		velocity.z = lerpf(velocity.z, direction.z * current_speed, 0.05)
 	
 	
 	fov_change(delta)
@@ -70,7 +74,7 @@ func fov_change(delta):
 	var velocity_clamped = clamp(velocity.length(), 1.0, 10.0)
 	head.fov = lerp(head.fov, 75 + velocity_clamped*3, delta*10)
 
-func crouching(delta):
+func crouching(_delta):
 	if is_crouching:
 		stand.disabled = true
 		sit.disabled = false

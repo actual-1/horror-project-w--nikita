@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbfc7j5er51jg"]
+[gd_scene load_steps=13 format=3 uid="uid://cbfc7j5er51jg"]
 
 [ext_resource type="Script" uid="uid://cfi3wec1eesvm" path="res://Game/Player/MovementController.gd" id="1_v82ko"]
 [ext_resource type="Script" uid="uid://cmd71jmuyiru5" path="res://Game/Player/CameraController.gd" id="2_s65bo"]
+[ext_resource type="FontFile" uid="uid://bjslfb4o6mo6u" path="res://Game/UI/FONTS/PIXELATED.ttf" id="3_1a87p"]
+[ext_resource type="Script" uid="uid://2x3438xvdmp4" path="res://Game/Player/ui.gd" id="3_scm1q"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s65bo"]
 radius = 0.25
@@ -47,6 +49,34 @@ _data = {
 &"headbob": SubResource("Animation_s65bo")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_scm1q"]
+font = ExtResource("3_1a87p")
+font_size = 46
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scm1q"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.28851798, 0.28851798, 0.28851798, 0.3019608)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jd2th"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.44705883, 0.40392157, 0.64705884, 0.4)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_v82ko")
 
@@ -79,3 +109,46 @@ spot_angle = 33.2
 libraries = {
 &"": SubResource("AnimationLibrary_scm1q")
 }
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_scale = 2.0
+script = ExtResource("3_scm1q")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Test" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 456.0
+offset_top = 78.0
+offset_right = -1140.0
+offset_bottom = -917.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "TESTING TEXT"
+label_settings = SubResource("LabelSettings_scm1q")
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = 187.0
+offset_right = -1308.0
+offset_bottom = -857.0
+theme_override_styles/background = SubResource("StyleBoxFlat_scm1q")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jd2th")
+value = 67.0
+show_percentage = false

@@ -454,16 +454,19 @@ theme_override_constants/v_separation = 100
 [node name="PLAY" type="Button" parent="CanvasLayer/GridContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_bbw8p")
 text = "PLAY!"
 
 [node name="SETTINGS" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_bbw8p")
 text = "SETTINGS"
 
 [node name="EXIT" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_fonts/font = ExtResource("2_bbw8p")
 text = "EXIT?"
 
