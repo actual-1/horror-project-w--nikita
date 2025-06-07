@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbfc7j5er51jg"]
+
+[ext_resource type="Script" uid="uid://cfi3wec1eesvm" path="res://Game/Player/MovementController.gd" id="1_v82ko"]
+[ext_resource type="Script" uid="uid://cmd71jmuyiru5" path="res://Game/Player/CameraController.gd" id="2_s65bo"]
+[ext_resource type="Script" uid="uid://c85ilo25x2ijo" path="res://Game/Player/MovementState.gd" id="3_1a87p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s65bo"]
+radius = 0.25
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_v82ko")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_s65bo")
+debug_color = Color(0, 0.6, 0.69803923, 0.8901961)
+
+[node name="YAW" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+script = ExtResource("2_s65bo")
+
+[node name="PITCH" type="Node3D" parent="YAW"]
+
+[node name="Head" type="Camera3D" parent="YAW/PITCH"]
+
+[node name="MovementLogic" type="Node" parent="."]
+script = ExtResource("3_1a87p")
