@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="HORROR PROJECT W/ NIKITA"
-run/main_scene="uid://tlk1tt11cmap"
+run/main_scene="uid://qmd6dv7dytku"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=4
 
 [input]
 

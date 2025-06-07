@@ -1,18 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbfc7j5er51jg"]
+[gd_scene load_steps=8 format=3 uid="uid://cbfc7j5er51jg"]
 
 [ext_resource type="Script" uid="uid://cfi3wec1eesvm" path="res://Game/Player/MovementController.gd" id="1_v82ko"]
 [ext_resource type="Script" uid="uid://cmd71jmuyiru5" path="res://Game/Player/CameraController.gd" id="2_s65bo"]
-[ext_resource type="Script" uid="uid://c85ilo25x2ijo" path="res://Game/Player/MovementState.gd" id="3_1a87p"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s65bo"]
 radius = 0.25
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1a87p"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="Animation" id="Animation_1a87p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YAW/PITCH:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s65bo"]
+resource_name = "headbob"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("YAW/PITCH:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.47),
+"transitions": PackedFloat32Array(1, 0.8122527, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.15, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_scm1q"]
+_data = {
+&"RESET": SubResource("Animation_1a87p"),
+&"headbob": SubResource("Animation_s65bo")
+}
+
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_v82ko")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="STAND" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_s65bo")
 debug_color = Color(0, 0.6, 0.69803923, 0.8901961)
+
+[node name="SIT" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("CapsuleShape3D_1a87p")
 
 [node name="YAW" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
@@ -21,6 +65,17 @@ script = ExtResource("2_s65bo")
 [node name="PITCH" type="Node3D" parent="YAW"]
 
 [node name="Head" type="Camera3D" parent="YAW/PITCH"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+top_level = true
 
-[node name="MovementLogic" type="Node" parent="."]
-script = ExtResource("3_1a87p")
+[node name="SpotLight3D" type="SpotLight3D" parent="YAW/PITCH"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.008268833)
+shadow_enabled = true
+distance_fade_enabled = true
+spot_range = 10.368412
+spot_angle = 33.2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_scm1q")
+}
